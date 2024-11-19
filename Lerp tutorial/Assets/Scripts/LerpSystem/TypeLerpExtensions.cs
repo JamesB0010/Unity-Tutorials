@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public static class TypeLerpExtensions
 {
     public static void LerpTo(this float value, float target, float timeToTake = 1.0f,
-        LerpStep<float> updateCallback = null, PackageProcessed finishedCb = null, AnimationCurve animCurve = null)
+        Action<float> updateCallback = null, Action<LerpPackage> finishedCb = null, AnimationCurve animCurve = null)
     {
         updateCallback ??= (float val) => { Debug.Log(val);};
 
@@ -26,7 +27,7 @@ public static class TypeLerpExtensions
     }
     
     public static void LerpTo(this Vector3 value, Vector3 target, float timeToTake = 1.0f,
-        LerpStep<Vector3> updateCallback = null, PackageProcessed finishedCb = null, AnimationCurve animCurve = null)
+        Action<Vector3> updateCallback = null, Action<LerpPackage> finishedCb = null, AnimationCurve animCurve = null)
     {
         updateCallback ??= val => { Debug.Log(val);};
 

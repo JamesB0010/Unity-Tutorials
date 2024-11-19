@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 class FloatLerpPackage : LerpPackage
 {
-    public LerpStep<float> lerpStepCallback;
+    public Action<float> lerpStepCallback;
 
     private float _start, _target;
 
@@ -20,7 +21,7 @@ class FloatLerpPackage : LerpPackage
         set => this._target = (float)value;
     }
 
-    public FloatLerpPackage(float start, float target, LerpStep<float> stepCallback, PackageProcessed finalCb,
+    public FloatLerpPackage(float start, float target, Action<float> stepCallback, Action<LerpPackage> finalCb,
         float timeToLerp = 1.0f, AnimationCurve animCurve = null) : base(finalCb, timeToLerp, animCurve)
     {
         this._start = start;

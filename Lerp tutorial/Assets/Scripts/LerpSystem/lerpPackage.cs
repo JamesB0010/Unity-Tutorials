@@ -1,14 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void LerpStep<T>(T currentValue);
-
-public delegate void PackageProcessed(LerpPackage pkg);
 
 public abstract class LerpPackage
 {
-    public PackageProcessed finalCallback;
+    public Action<LerpPackage> finalCallback;
     public float timeToLerp;
     public float elapsedtime;
     public float currentPercentage;
@@ -22,7 +20,7 @@ public abstract class LerpPackage
         this.elapsedtime = 0.0f;
     }
 
-    protected LerpPackage(PackageProcessed finalCb, float timeToLerp, AnimationCurve animCurve)
+    protected LerpPackage(Action<LerpPackage> finalCb, float timeToLerp, AnimationCurve animCurve)
     {
         this.finalCallback = finalCb;
         this.timeToLerp = timeToLerp;
